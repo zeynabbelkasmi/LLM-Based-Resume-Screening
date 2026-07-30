@@ -1,0 +1,40 @@
+# Environnements & caches Python
+.venv*/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Données locales (confidentialité : ne jamais versionner les analyses de CV)
+analyses.db
+analyses.db-wal
+analyses.db-shm
+*.db-journal
+
+# Secrets locaux — les clés IA ne doivent jamais entrer dans le dépôt
+.env
+.env.*
+!.env.example
+!frontend/.env.development
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# Frontend React / Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/*.tsbuildinfo
+
+# Backend / qualité
+.coverage
+coverage.xml
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# Archives de livraison locales (peuvent contenir des CV ou une base SQLite)
+*.zip
+
+# IDE
+.vscode/
+.idea/

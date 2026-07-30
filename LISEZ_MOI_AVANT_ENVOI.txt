@@ -1,0 +1,12 @@
+Projet Analyse CV configuré pour Qwen3 8B via LM Studio.
+
+Prérequis :
+- charger qwen/qwen3-8b dans LM Studio ;
+- démarrer le serveur local sur http://127.0.0.1:1234 ;
+- installer les dépendances Python et frontend si elles ne sont pas présentes.
+
+Le fichier .env est facultatif avec les valeurs par défaut. Copiez .env.example
+vers .env uniquement pour changer l'URL, le modèle ou activer un jeton LM Studio.
+
+Ne partagez jamais .env, analyses.db ou des CV réels. Consultez readme.md pour
+les commandes de démarrage et de vérification.
