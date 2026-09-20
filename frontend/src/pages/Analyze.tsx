@@ -139,7 +139,7 @@ export default function Analyze() {
     event.preventDefault();
     setErrors([]);
     setResults([]);
-    if (!files.length || !hasJobContext || weightTotal !== 100 || !criteriaAreValid) return;
+    if (!files.length || !hasJobContext) return;
     setProcessing(true);
     setProgress(4);
     const completed: Candidate[] = [];
@@ -510,13 +510,7 @@ export default function Analyze() {
             <button
               className="button button--primary button--xl button--full analyze-button"
               type="submit"
-              disabled={
-                !files.length ||
-                !hasJobContext ||
-                weightTotal !== 100 ||
-                !criteriaAreValid ||
-                processing
-              }
+              disabled={!files.length || !hasJobContext || processing}
             >
               <Sparkles size={18} />
               Lancer l’analyse
