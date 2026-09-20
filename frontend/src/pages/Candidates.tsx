@@ -12,31 +12,12 @@ import {
   FileSpreadsheet,
   FileText,
   FilePlus2,
-  Filter,
-  Grid2X2,
-  List,
-  Search,
-  SlidersHorizontal,
-  Sparkles,
-  Tag,
-  UsersRound,
-  X,
-} from "lucide-react";
-import { Fragment, useEffect, useMemo, useState } from "react";
-import { Link } from "../lib/navigation";
-import {
-  Avatar,
-  EmptyState,
-  ErrorState,
-  PageHeading,
-  PageTransition,
-  ScoreBar,
-  StatusBadge,
-  TableSkeleton,
-} from "../components/ui";
-import { useData } from "../context/DataContext";
-import { api } from "../lib/api";
-import type { Candidate, CandidateStatus, WorkflowStatus } from "../types";
+        actions={
+          <Link className="button button--primary" to="/analyse">
+            <FilePlus2 size={17} />
+            Ajouter des CV
+          </Link>
+        }
 import "./candidates-enterprise.css";
 
 type SortKey = "score-desc" | "score-asc" | "recent" | "name";

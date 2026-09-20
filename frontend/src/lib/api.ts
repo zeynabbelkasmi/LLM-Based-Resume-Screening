@@ -252,9 +252,6 @@ export const api = {
     return { ...raw, items: raw.items.map(normalizeCandidate) }
   },
   deleteCandidate: (id: string) => apiFetch<void>(`/analyses/${encodeURIComponent(id)}`, { method: 'DELETE' }),
-  downloadCandidatesExcel: () => apiDownload('/exports/candidates.xlsx', 'analyse-cv-candidats.xlsx'),
-  downloadCandidatesPdf: () => apiDownload('/exports/candidates.pdf', 'analyse-cv-candidats.pdf'),
-  downloadCandidatePdf: (id: string) => apiDownload(`/exports/candidates/${encodeURIComponent(id)}.pdf`, `analyse-cv-candidat-${id}.pdf`),
 
   analyzeFile: async (file: File, options: AnalysisOptions) => {
     const form = new FormData()
