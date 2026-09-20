@@ -49,7 +49,7 @@ export default function Candidates() {
   const [view, setView] = useState<"table" | "grid">("table");
   const [selected, setSelected] = useState<string[]>([]);
   const [compareOpen, setCompareOpen] = useState(false);
-  const [exporting, setExporting] = useState<"excel" | "pdf" | null>(null);
+  const [exporting, setExporting] = useState<"excel" | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
   const [bulkStatus, setBulkStatus] = useState<"" | WorkflowStatus>("");
   const [bulkTag, setBulkTag] = useState("");
@@ -111,12 +111,11 @@ export default function Candidates() {
       : [...new Set([...current, ...visibleIds])].slice(0, 100));
   };
 
-  const downloadExport = async (format: "excel" | "pdf") => {
+  const downloadExport = async (format: "excel") => {
     setExporting(format);
     setActionError(null);
     try {
-      if (format === "excel") await api.downloadCandidatesExcel();
-      else await api.downloadCandidatesPdf();
+      await api.downloadCandidatesExcel();
     } catch (downloadError) {
       setActionError(downloadError instanceof Error ? downloadError.message : "L’export n’a pas pu être généré.");
     } finally {
@@ -166,12 +165,7 @@ export default function Candidates() {
                   <div><strong>Classeur Excel</strong><small>24 colonnes · filtrable · exhaustif</small></div>
                   <FileDown size={15} />
                 </button>
-                <button type="button" onClick={() => void downloadExport("pdf")} disabled={!candidates.length || exporting !== null || source !== "api"}>
-                  <i className="export-icon export-icon--pdf"><FileText size={18} /></i>
-                  <div><strong>Rapport PDF consolidé</strong><small>Synthèse paginée de tous les profils</small></div>
-                  <FileDown size={15} />
-                </button>
-                <p>{exporting ? `Génération ${exporting === "excel" ? "du classeur" : "du rapport"}…` : "Exports confidentiels · contenu brut exclu"}</p>
+                <p>{exporting ? `Génération du classeur…` : "Exports confidentiels · contenu brut exclu"}</p>
               </div>
             </details>
             <Link className="button button--primary" to="/analyse">

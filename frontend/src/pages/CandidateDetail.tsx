@@ -150,8 +150,7 @@ export default function CandidateDetail() {
   const [favorite, setFavorite] = useState(false);
   const [note, setNote] = useState("");
   const [saving, setSaving] = useState(false);
-  const [exportingReport, setExportingReport] = useState(false);
-  const [exportError, setExportError] = useState<string | null>(null);
+  // Export PDF report removed
 
   useEffect(() => {
     const cached = findCandidate(candidateId);
@@ -193,18 +192,7 @@ export default function CandidateDetail() {
       />
     );
 
-  const exportReport = async () => {
-    if (source !== "api") return;
-    setExportingReport(true);
-    setExportError(null);
-    try {
-      await api.downloadCandidatePdf(candidate.id);
-    } catch (error) {
-      setExportError(error instanceof Error ? error.message : "Le rapport PDF n’a pas pu être généré.");
-    } finally {
-      setExportingReport(false);
-    }
-  };
+  // exportReport removed per request
 
   const updateFavorite = async () => {
     const next = !favorite;
@@ -253,19 +241,9 @@ export default function CandidateDetail() {
           >
             <Heart size={18} fill={favorite ? "currentColor" : "none"} />
           </button>
-          <button className="button button--secondary" onClick={() => void exportReport()} disabled={exportingReport || source !== "api"}>
-            <Download size={16} />
-            {exportingReport ? "Génération…" : "Rapport PDF"}
-          </button>
         </div>
       </div>
 
-      {exportError && (
-        <div className="api-error-banner" role="alert">
-          <span>{exportError}</span>
-          <button className="icon-button icon-button--sm" onClick={() => setExportError(null)} aria-label="Fermer"><X size={15} /></button>
-        </div>
-      )}
 
       <section className="profile-hero panel">
         <div className="profile-hero__identity">
