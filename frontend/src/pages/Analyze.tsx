@@ -396,19 +396,7 @@ export default function Analyze() {
                   <p>Personnalisez le scoring</p>
                 </div>
               </header>
-              <label className="field-label">Mode d’analyse</label>
-              <div className="mode-selector mode-selector--single">
-                <div className="is-active">
-                  <BrainCircuit size={15} />
-                  <span>
-                    LLM<small>Analyse sémantique</small>
-                  </span>
-                </div>
-              </div>
-              <div className="mode-explanation">
-                <Info size={15} />
-                <span>Utilise la compréhension sémantique du modèle LLM connecté.</span>
-              </div>
+              {/* Analysis mode section removed per request */}
 
               <div className="divider" />
               <div className="weight-heading">
@@ -518,16 +506,7 @@ export default function Analyze() {
               </AnimatePresence>
             </article>
 
-            <div className="privacy-note">
-              <LockKeyhole size={18} />
-              <div>
-                <strong>Traitement maîtrisé</strong>
-                <span>
-                  Les fichiers ne sont pas conservés dans ce navigateur. Leur
-                  contenu est transmis par le backend au fournisseur LLM configuré.
-                </span>
-              </div>
-            </div>
+            {/* Privacy note removed per request */}
             <button
               className="button button--primary button--xl button--full analyze-button"
               type="submit"

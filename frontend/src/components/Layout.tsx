@@ -121,23 +121,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </nav>
 
       <div className="sidebar__footer">
-        <div className="privacy-card">
-          <span className="privacy-card__icon">
-            <Sparkles size={15} />
-          </span>
-          <div>
-            <strong>Données protégées</strong>
-            <span>Traitement confidentiel</span>
-          </div>
-        </div>
-        <div className="user-card">
-          <span className="avatar avatar--sm avatar--color-3">RH</span>
-          <div>
-            <strong>Espace local</strong>
-            <span>Session privée</span>
-          </div>
-          <ChevronRight size={15} />
-        </div>
+        {/* Privacy card removed per request */}
       </div>
     </>
   );
