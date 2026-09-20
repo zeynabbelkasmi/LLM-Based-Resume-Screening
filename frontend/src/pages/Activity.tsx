@@ -56,8 +56,6 @@ const categories: Array<{ value: ActivityCategory; label: string; icon: LucideIc
   { value: 'all', label: 'Tout', icon: History },
   { value: 'candidate', label: 'Dossiers', icon: UsersRound },
   { value: 'pipeline', label: 'Pipeline', icon: GitBranch },
-  { value: 'export', label: 'Exports', icon: Download },
-  { value: 'system', label: 'Système', icon: ShieldCheck },
 ]
 
 const knownActions: Record<string, EventPresentation> = {
