@@ -12,12 +12,31 @@ import {
   FileSpreadsheet,
   FileText,
   FilePlus2,
-        actions={
-          <Link className="button button--primary" to="/analyse">
-            <FilePlus2 size={17} />
-            Ajouter des CV
-          </Link>
-        }
+  Filter,
+  Grid2X2,
+  List,
+  Search,
+  SlidersHorizontal,
+  Sparkles,
+  Tag,
+  UsersRound,
+  X,
+} from "lucide-react";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import { Link } from "../lib/navigation";
+import {
+  Avatar,
+  EmptyState,
+  ErrorState,
+  PageHeading,
+  PageTransition,
+  ScoreBar,
+  StatusBadge,
+  TableSkeleton,
+} from "../components/ui";
+import { useData } from "../context/DataContext";
+import { api } from "../lib/api";
+import type { Candidate, CandidateStatus, WorkflowStatus } from "../types";
 import "./candidates-enterprise.css";
 
 type SortKey = "score-desc" | "score-asc" | "recent" | "name";
@@ -30,7 +49,7 @@ export default function Candidates() {
   const [view, setView] = useState<"table" | "grid">("table");
   const [selected, setSelected] = useState<string[]>([]);
   const [compareOpen, setCompareOpen] = useState(false);
-  const [exporting, setExporting] = useState<"excel" | null>(null);
+  
   const [actionError, setActionError] = useState<string | null>(null);
   const [bulkStatus, setBulkStatus] = useState<"" | WorkflowStatus>("");
   const [bulkTag, setBulkTag] = useState("");
@@ -92,17 +111,7 @@ export default function Candidates() {
       : [...new Set([...current, ...visibleIds])].slice(0, 100));
   };
 
-  const downloadExport = async (format: "excel") => {
-    setExporting(format);
-    setActionError(null);
-    try {
-      await api.downloadCandidatesExcel();
-    } catch (downloadError) {
-      setActionError(downloadError instanceof Error ? downloadError.message : "L’export n’a pas pu être généré.");
-    } finally {
-      setExporting(null);
-    }
-  };
+  
 
   const applyBulkUpdate = async (favorite?: boolean) => {
     const normalizedTag = bulkTag.trim();
@@ -132,28 +141,10 @@ export default function Candidates() {
         title="CV & candidats"
         description="Explorez, filtrez et comparez tous les profils analysés."
         actions={
-          <>
-            <details className="export-menu">
-              <summary className="button button--secondary" aria-label="Télécharger la liste des candidats">
-                <Download size={17} />
-                Télécharger
-                <ChevronDown size={14} />
-              </summary>
-              <div className="export-menu__popover">
-                <span>Exporter toute la CVthèque</span>
-                <button type="button" onClick={() => void downloadExport("excel")} disabled={!candidates.length || exporting !== null || source !== "api"}>
-                  <i className="export-icon export-icon--excel"><FileSpreadsheet size={18} /></i>
-                  <div><strong>Classeur Excel</strong><small>24 colonnes · filtrable · exhaustif</small></div>
-                  <FileDown size={15} />
-                </button>
-                <p>{exporting ? `Génération du classeur…` : "Exports confidentiels · contenu brut exclu"}</p>
-              </div>
-            </details>
-            <Link className="button button--primary" to="/analyse">
-              <FilePlus2 size={17} />
-              Ajouter des CV
-            </Link>
-          </>
+          <Link className="button button--primary" to="/analyse">
+            <FilePlus2 size={17} />
+            Ajouter des CV
+          </Link>
         }
       />
       {actionError && (
