@@ -25,7 +25,7 @@ const navigation = [
   { to: "/candidats", label: "CV & candidats", icon: FileStack },
   { to: "/pipeline", label: "Pipeline", icon: GitBranch },
   { to: "/journal", label: "Journal d’activité", icon: History },
-  { to: "/parametres", label: "Paramètres", icon: Settings2 },
+  // Paramètres removed
 ];
 
 const mobileNavigation = navigation.filter(({ to }) =>
@@ -37,7 +37,7 @@ const titles: Record<string, string> = {
   "/pipeline": "Pipeline candidats",
   "/analyse": "Nouvelle analyse",
   "/journal": "Journal d’activité",
-  "/parametres": "Paramètres",
+  // "/parametres": "Paramètres",
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
