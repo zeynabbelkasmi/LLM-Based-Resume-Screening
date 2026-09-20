@@ -350,14 +350,7 @@ export default function Activity() {
         </div>
       </section>
 
-      <aside className="activity-privacy" role="note">
-        <span><ShieldCheck size={18} /></span>
-        <div>
-          <strong>Journal conçu pour la confidentialité</strong>
-          <p>Seules les opérations et métadonnées techniques sont affichées — aucun nom, contact, note ou contenu de CV.</p>
-        </div>
-        <i>Rétention bornée</i>
-      </aside>
+      {/* Activity privacy note removed per request */}
 
       <section className="activity-controls panel" aria-label="Filtres du journal">
         <div className="activity-search">
